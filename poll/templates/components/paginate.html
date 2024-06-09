@@ -1,0 +1,38 @@
+<style type="text/css">
+	.nav-bn-1{
+		border-right: 3px solid #f5f5f5;
+		font-size: 20px;
+	}
+	.nav-bn-2{
+		border-left: 3px solid #f5f5f5;
+		font-size: 20px;
+	}
+	.nav-bn-2:hover, .nav-bn-1:hover{
+		background-color: #f9f9f9;
+		color: #777;
+	}
+	.off-nav-bn{
+		opacity: 50%;
+		background-color: #f9f9f9;
+	}
+</style>
+
+<div class="flex py-5 mb-3 justify-center">
+	<div class="ui pagination menu">
+
+		{% if docs.has_previous %}
+			<a href="?searcher={{ search }}&page={{ docs.previous_page_number }}" class="item"><i class="fas fa-chevron-left"></i></a>
+		{% else %}
+			<div class="item disabled"><i class="fas fa-chevron-left"></i></div>
+		{% endif %}
+
+		<div class="item">{{docs.number}} ... out of {{docs.paginator.num_pages}}</div>
+
+		{% if docs.has_next %}
+			<a href="?searcher={{ search }}&page={{ docs.next_page_number }}" class="item"><i class="fas fa-chevron-right"></i></a>
+		{% else %}
+			<div class="item disabled"><i class="fas fa-chevron-right"></i></div>
+		{% endif %}
+
+	</div>
+</div>

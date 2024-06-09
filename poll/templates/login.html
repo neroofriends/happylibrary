@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>Happy Library - share global class knowledge</title>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" defer></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/fancy.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<style type="text/css">
+			body{
+				position: relative;
+				background-image: url('{% static "img/2.png" %}');
+				background-position: center;
+				background-repeat: repeat;
+			}
+			input{
+				border-color: #cacaca !important;
+			}
+			input::placeholder{
+				color: #333333b0 !important;
+			}
+
+			input:focus{
+				outline: 2px solid #0265dc !important;
+				border-color: transparent !important;
+			}
+		</style>
+	</head>
+	<body class="land2">
+		<div class="mask"></div>
+		{% include 'components/navbar.html' with user=user %}
+		{% if messages %}
+			<style type="text/css">
+				.messages{
+					background-color: #FF112F !important;
+					border-bottom: none;
+				}
+				.messages *{
+					font-weight: bold;
+					color: white !important;
+				}
+			</style>
+		{% endif %}
+		
+		<p class="text-center text-xl-9 px-3 mb-5 text-white mt-10 syne bold pos-relative">Login to your account</p>
+		
+		<div class="flex justify-center">
+			<div class="col-4 col-5-xl col-7-lg col-8-md col-9-sm">
+				<div class="ui fluid card">
+					<div class="content">
+						<p class="text-center mb-3 text-xl-3 syne">Get access to uploading</p>
+						<form class="ui form" method="POST" action="{% url 'login' %}">
+							{% csrf_token %}
+							<div class="field">
+								<label>Username or email</label>
+								<input type="text" name="username" placeholder="User">
+							</div>
+							<div class="field mb-2">
+								<label>Password</label>
+								<input type="password" name="password" placeholder="Password">
+							</div>
+							<button class="ui primary labeled icon button" type="submit">
+							<i class="unlock alternate icon"></i>
+							Login
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="  crossorigin="anonymous"></script>
+	</body>
+</html>

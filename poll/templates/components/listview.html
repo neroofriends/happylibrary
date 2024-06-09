@@ -1,0 +1,134 @@
+{% load static %}
+<style type="text/css">
+	.card{
+		box-shadow: none !important;
+		border: 1px solid #eaeaea !important;
+	}
+
+	.card .get{
+		color: #0054b6;
+		font-size: 15px;
+	}
+
+	.card .get:hover{
+		text-decoration: underline;
+	}
+
+	.card:hover .header{
+/*		color: #ff714a !important;*/
+	}
+
+	.card .header{
+		font-weight: 600 !important;
+		font-size: 17px !important;
+		color: #232323 !important;
+	}
+
+	.ui.cards>.card>.extra {
+		border-top: none !important;
+	}
+
+	@media (max-width: 760px){
+		.card{
+			width: 100% !important;
+			margin-bottom: 5px !important;
+		}
+	}
+
+	.cards{
+		width: 100%;
+	}
+
+	.uploader{
+		font-size: 11px;
+		text-transform: uppercase;
+		-moz-osx-font-smoothing: grayscale;
+	    -webkit-font-smoothing: antialiased;
+	    letter-spacing: .06em;
+	    padding-right: 8px;
+	    text-transform: uppercase;
+	    color: #4b4b4b;
+	}
+
+	.description{
+		display: inline;
+	    font-size: 14px;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-font-smoothing: antialiased;
+	    font-weight: normal;
+	    line-height: 21px;
+	    color: #6e6e6e;
+	}
+
+	.get{
+		padding: 6px !important;
+		display: flex !important;
+		align-items: center !important;
+		border-radius: 50px !important;
+		width: max-content;
+		padding-left: 10px !important;
+		font-family: 'Adobe Clean', sans-serif !important;
+		padding-right: 10px !important;
+	}
+</style>
+
+
+<div class="ui pt-5 cards flex flex-wrap justify-center-sm">
+	{% for doc in docs %}
+		<a href="{{doc.address}}" target="_blank" class="card">
+			<div class="content">
+				<p><span class="uploader">{{doc.uploader}}</span></p>
+				<div class="header mb-1 serif">{{doc.title|title}}</div>
+				<div class="meta pt-1 syne dim2 mon">{{doc.date}} • {{doc.tags}}</div>
+			</div>
+			<div class="">
+				<div class="px-3 pb-2">
+					<span class="ux button ui black basic get flex align-items-center">Get 
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1" height="19px" width="19px">
+						  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+						</svg>
+					</span>
+				</div>
+			</div>
+		</a>
+	{% endfor %}
+</div>
+
+
+<script type="text/javascript">
+	let iconz = document.getElementsByClassName('iconz');
+	let svgz = document.getElementsByClassName('svgz');
+	let urlz = '{% static 'img' %}'
+	function RnImg(){
+		return Math.round(Math.random()*(13 - 1) + 1)
+	}
+	let colors = [
+		`<svg class="w1 h1 malibu-fill-gradient-purple">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		`<svg class="w1 h1 malibu-fill-gradient-gray">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		`<svg class="w1 h1 malibu-fill-gradient-dark-gray">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		`<svg class="w1 h1 malibu-fill-gradient-red">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		`<svg class="w1 h1 malibu-fill-gradient-orange">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		`<svg class="w1 h1 malibu-fill-gradient-green">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		`<svg class="w1 h1 malibu-fill-gradient-blue">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#app-28" />
+		</svg>`,
+		]
+	function colorIconz(){
+		return colors[Math.round(Math.random()*(5 - 0) + 0)]
+	}
+	for(let i = 0; i < svgz.length; i++) {
+		svgz[i].innerHTML = colorIconz();
+	}
+</script>

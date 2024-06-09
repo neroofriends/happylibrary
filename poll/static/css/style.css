@@ -1,0 +1,91 @@
+{% load static %}
+
+@import url('https://fonts.cdnfonts.com/css/adobe-clean');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+    font-family:'adobeClean';
+    src:url('{% static "fonts/adobe-clean/AdobeCleanRegular.otf" %}') format("opentype");,;
+}
+
+*{
+/*	font-family: 'Adobe Clean UX', sans-serif;*/
+	padding: 0;
+	margin: 0;
+	z-index: 1;
+}
+
+.clean, .clean *{
+	font-family: 'Adobe Clean', sans-serif;
+}
+
+.serif, .serif *{
+	font-family: 'Adobe Clean Serif', sans-serif;
+}
+
+.mon .mon *{
+	font-family: "Montserrat", sans-serif !important;
+}
+
+.ux, .ux *{
+	font-family: 'Adobe Clean UX', sans-serif;
+}
+
+.syne{
+	font-family: "Syne", sans-serif;
+}
+
+.light{
+	color: #4b4b4b;
+}
+
+.dim{
+	color: #232323 !important;
+}           
+
+.dim2{
+	color: #555 !important;
+}                    
+
+.al{
+	color: #0054b6 !important;
+}
+
+.blc{
+	border-color: #eaeaea;
+}
+
+.land, .land2{
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.land *{
+	color: white;
+}
+
+.fade{
+	background-color: #f5f5f5 !important;
+}
+
+.rel{
+	position: relative;
+}
+
+.land .mask, .land2 .mask{
+	background-color: #00000050;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+/*	z-index: 1 !important;*/
+}
+
+
+
+@media (max-width: 900px){
+
+}

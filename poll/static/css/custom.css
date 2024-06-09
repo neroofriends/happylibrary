@@ -1,0 +1,6 @@
+{% load static %}
+
+@font-face {
+    font-family:'adobe-clean';
+    src:url('{% static 'fonts/adobe-clean/AdobeCleanRegular.otf' %}') format('otf'),;
+}

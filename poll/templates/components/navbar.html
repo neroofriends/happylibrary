@@ -1,0 +1,141 @@
+{% load static %}
+
+<meta name="theme-color" content="#fa0f00">
+
+<style type="text/css">
+	body{
+		background-color: #f5f5f5;
+	}
+	nav{
+		border-bottom: 1px solid #eaeaea;
+		z-index: 3;
+		background-color: #fff;
+	}
+	nav *{
+		color: #333;
+		font-family: 'Adobe Clean', sans-serif;
+
+	}
+	.nav-links *{
+		font-size: 16px;
+	}
+	.navbrand{
+		font-weight: 600;
+		font-size: 21px;
+	}
+
+	@media (max-width: 700px){
+		.navbrand{
+			font-size: 20px;
+		}
+	}
+
+	nav .input input{
+		border-color: #cacaca !important;
+		border-radius: 50px !important;
+	}
+	nav .input input:focus{
+		outline: 2px solid #0265dc !important;
+		border-color: transparent !important;
+	}
+	nav .input input::placeholder{
+		color: #333333b0 !important;
+	}
+	.messages{
+		border-bottom: 1px solid #d5d5d5;
+		background-color: white;
+	}
+
+	.menuer{
+		border-color: #cacaca;
+		color: #252525 !important;
+	}
+</style>
+<nav class="flex sticky-top py-1 py-0-sm py-2-md bg-white justify-center">
+	<div class="col-9 col-10-md px-2-md flex justify-between">
+		<div class="flex justify-start nav-links align-items-center">
+			<a href="{% url 'index' %}">
+				<div class="flex align-items-center justify-start mr-3">
+					<span><img src="{% static 'img/logo.svg' %}" class="img" style="width: 50px;"></span>
+					<span><p class="navbrand px-2 py-1 pr-0-sm clean"><span class="d-none-md navbrand">Happy</span> Librarian</p></span>
+				</div>
+			</a>
+			<a href="{% url 'about' %}" class="d-none-md"><p class="px-2 py-3">About</p></a>
+			<a href="#" class="d-none-md"><p class="px-2 py-3">Terms</p></a>
+			<a href="{% url 'account' %}" class="d-none-md"><p class="px-2 py-3">User Profile</p></a>
+			{% if user.is_authenticated %}
+				<a href="{% url 'upload' %}" class="d-none-md"><p class="px-2 py-3">Upload</p></a>
+			{% else %}
+				<a href="{% url 'login' %}" class="d-none-md"><p class="px-2 py-3">Upload</p></a>
+			{% endif %}
+		</div>
+		<div class="flex justify-end align-items-center">
+			<form method="GET" action="search" class="ui round-full left icon input loading">
+				{% csrf_token %}
+				<div class="ui search">
+					<div class="ui icon input">
+						<input name="searcher" class="prompt" type="text" placeholder="Search notes...">
+						<i class="search icon"></i>
+					</div>
+					<div class="results"></div>
+				</div>
+			</form>
+			<div class="d-none-md">
+				<div class="mx-2 ui dropdown">
+					<input type="hidden" name="gender">
+					<div class="default ui blac basic button menuer">Account <i class="ml-2 fas fa-chevron-down"></i></div>
+					<div class="menu">
+						{% if user.is_authenticated %}
+							<div class="item" data-value="login"><a href="{% url 'logout'%}"><p>Logout</p></a></div>
+							<div class="item" data-value="login"><p class="bold disabled ui">{{user}}</p></div>
+						{% else %}
+							<div class="item" data-value="login"><a href="{% url 'login'%}"><p>Login</p></a></div>
+							<div class="item" data-value="sign up"><a href="{% url 'register'%}"><p>Sign Up</p></a></div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="d-none d-block-md px-3">
+				<div class="ui dropdown">
+					<div class="text text-xl-2"><i class="fas fa-bars"></i></div>
+					<div class="menu">
+						{% if user.is_authenticated %}
+							<a href="{% url 'upload'%}" class="item"><div class="text-xl">Upload</div></a>
+						{% else %}
+							<a href="{% url 'login'%}" class="item"><div class="text-xl">Upload</div></a>
+						{% endif %}
+						<a href="{% url 'account' %}" class="item"><div class="text-xl">User Profile</div></a>
+						<a href="{% url 'about' %}" class="item"><div class="text-xl">Terms</div></a>
+						<a href="{% url 'about' %}" class="item"><div class="text-xl">About</div></a>
+						
+						<div class="divider"></div>
+						{% if user.is_authenticated %}
+							<div class="item"><div class="text-xl">{{user}}</div></div>
+							<a href="{% url 'logout' %}" class="item"><div class="text-xl">logout</div></a>
+						{% else %}
+							<a href="{% url 'login'%}" class="item"><div class="text-xl" data-value="login"><p>Login</p></div>
+							<a href="{% url 'register'%}" class="item"><div class="text-xl" data-value="sign up"><p>Sign Up</p></div></a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+{% if messages %}
+	{% for message in messages %}
+		<div class="flex px-2 messages ui blue  justify-center">
+			<div class="col-9 align-items-center flex justify-between">
+				<span><p class="py-3 light">{{message}}</p></span>
+				<p><i class="fas fa-times"></i></p>
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="  crossorigin="anonymous"></script>
+<script type="text/javascript" defer src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+<script defer type="text/javascript">
+	$( document ).ready(function() {
+	$('.ui.dropdown').dropdown();
+	});
+</script>

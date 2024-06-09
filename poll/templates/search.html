@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Happy Library - search</title>
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" defer></script>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
+
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/fancy.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+	{% include 'components/navbar.html' with user=user %}
+	
+
+	<div class="flex justify-center">
+		<div class="col-9 flex col-10-sm flex-wrap-md">
+			<div class="col-7 col-10-sm mt-4">
+				<span><p class="text-xl-8 ux text-xl-7-md text-xl-5-sm bold clean px-2 mt-4">Search results for <span class="al">{{search}}</span></p></span>
+
+				<div class="flex justify-center col-10">				
+					{% include 'components/listview.html' with user=user %}
+				</div>
+
+				{% include 'components/paginate.html' with search=search %}
+
+			</div>
+			<div class="col-3 col-10-sm"></div>
+		</div>
+	</div>
+
+	{% include 'components/footer.html' %}
+
+
+	<script type="text/javascript" defer src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+
+
+</body>
+</html>
